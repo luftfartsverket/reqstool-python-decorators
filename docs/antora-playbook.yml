@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/asciidoctor/asciidoctor-intellij-plugin/main/src/main/resources/jsonSchemas/antoraPlaybookSchema.json
+
+site:
+  title: Requirements Tool Documentation
+  url: https://github.com/Luftfartsverket/reqstool-python-decorators.git
+  start_page: reqstool-python-decorators::index.adoc
+
+content:
+  sources:
+    - url: ~+
+      branches: HEAD
+      start_path: docs
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+asciidoc:
+  attributes:
+    kroki-server-url: https://kroki.com
+    kroki-fetch-diagram: true
+  extensions:
+    - asciidoctor-kroki

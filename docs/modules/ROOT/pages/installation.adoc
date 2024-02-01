@@ -1,0 +1,9 @@
+== Installation
+
+The package name is `reqstool-decorators`.
+
+* Using pip install:
+
+```
+$pip install reqstool-decorators 
+```
