@@ -1,5 +1,5 @@
 import pytest
-from src.reqstool_decorators.processors.decorator_processor import ProcessDecorator
+from src.reqstool_python_decorators.processors.decorator_processor import ProcessDecorator
 from ruamel.yaml import YAML
 
 

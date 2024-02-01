@@ -8,7 +8,7 @@ pythonpath = [".", "src", "tests"]
 testpaths = ["tests/unit"]
 
 [project]
-name = "reqstool-decorators"
+name = "reqstool-python-decorators"
 dynamic = ["version"]
 authors = [{ name = "LFV SYSDEV", email = "sysdev@lfv.com" }]
 description = "Reqstool Python Decorators"
@@ -30,7 +30,7 @@ requires-python = ">=3.10"
 
 dependencies = ["ruamel.yaml>=0.18.5"]
 
-packages = [{ include = "reqstool_decorators", from = "src" }]
+packages = [{ include = "reqstool_python_decorators", from = "src" }]
 
 [project.scripts]
 # section needed for poetry convertion
