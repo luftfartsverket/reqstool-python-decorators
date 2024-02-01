@@ -2,7 +2,7 @@
 
 site:
   title: Requirements Tool Documentation
-  url: https://github.com/Luftfartsverket/requirements-tool/reqstool-python-decorators.git
+  url: https://github.com/Luftfartsverket/reqstool-python-decorators.git
   start_page: reqstool-python-decorators::index.adoc
 
 content:
