@@ -5,7 +5,7 @@ on:
 jobs:
   linting:
     name: Reuse linting job
-    uses: ./.github/workflows/linting.yml
+    uses: ./.github/workflows/lint.yml
 
   build:
     needs: linting
