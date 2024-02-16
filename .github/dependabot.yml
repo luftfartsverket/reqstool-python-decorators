@@ -9,10 +9,6 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
-  - package-ecosystem: "maven" # See documentation for possible values
-    directory: "/data/local/test_basic/layout_maven/ms-101" # Location of package manifests
-    schedule:
-      interval: "daily"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
