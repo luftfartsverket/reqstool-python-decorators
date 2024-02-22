@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/asciidoctor/asciidoctor-intellij-plugin/main/src/main/resources/jsonSchemas/antoraPlaybookSchema.json
 
 site:
-  title: Requirements Tool Documentation
+  title: Reqstool Python Decorators Documentation
   url: https://github.com/Luftfartsverket/reqstool-python-decorators.git
   start_page: reqstool-python-decorators::index.adoc
 
