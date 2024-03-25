@@ -42,17 +42,16 @@ def test_somefunction():
 Import processor:
 
 ```
-from reqstool_python_decorators.processors.decorator_processor import ProcessDecorator
+from reqstool_python_decorators.processors.decorator_processor import DecoratorProcessor
 ```
 
 Main function to collect decorators data and generate yaml file:
 
 ```
-process_decorated_data(path_to_python_files)
+process_decorated_data(path_to_python_files, output_file)
 ```
 
-Here `path_to_python_files` is the directories to search through to find decorated code.
+`path_to_python_files` is the directories to search through to find decorated code.
 
-*Note:*
+`output_file` is output file(path) the yaml file is stored to
 
-Yaml file is saved into the `/dist` folder, make sure the folder exists before running the `process_decorated_data` function.
