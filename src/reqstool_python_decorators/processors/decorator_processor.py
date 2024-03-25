@@ -18,7 +18,7 @@ class DECORATOR_TYPES(Enum):
         return f"from: {self.from_value}, to: {self.to_value}"
 
 
-class ProcessDecorator:
+class DecoratorProcessor:
     """
     A class for collecting and processing Requirements and SVCs annotations on functions and classes in a directory.
 
@@ -30,11 +30,8 @@ class ProcessDecorator:
     """
 
     decorators_to_search = ["Requirements", "SVCs"]
-    reqsvc_yaml_path = "dist/all_annotations.yml"
 
-    yaml_language_server = (
-        "# yaml-language-server: $schema=https://schemas.se/requirements-tool/v1/annotations.schema.json\n"
-    )
+    yaml_language_server = "# yaml-language-server: $schema=https://raw.githubusercontent.com/Luftfartsverket/reqstool-client/main/src/reqstool/resources/schemas/v1/annotations.schema.json\n"
 
     def __init__(self, *args, **kwargs):
         """
@@ -176,7 +173,7 @@ class ProcessDecorator:
 
         return formatted_data
 
-    def process_decorated_data(self, path_to_python_files):
+    def process_decorated_data(self, path_to_python_files, output_dir="build/annotations.yml"):
         """
         "Main" function, runs all functions resulting in  a yaml file containing decorated data.
 
@@ -192,5 +189,5 @@ class ProcessDecorator:
             for file_path in python_files:
                 self.get_functions_and_classes(file_path=file_path, decorator_names=self.decorators_to_search)
         formatted_reqsvc_data = self.format_results(results=self.req_svc_results)
-        reqsvc_yaml_path = "dist/annotations.yml"
+        reqsvc_yaml_path = output_dir
         self.write_to_yaml(output_file=reqsvc_yaml_path, formatted_data=formatted_reqsvc_data)
