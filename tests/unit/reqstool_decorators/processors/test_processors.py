@@ -35,7 +35,7 @@ def test_map_type_unknown_type(process_decorator_instance: DecoratorProcessor):
 
 
 def test_write_to_yaml(process_decorator_instance: DecoratorProcessor, tmp_path):
-    yaml_language_server = "# yaml-language-server: $schema=https://raw.githubusercontent.com/Luftfartsverket/reqstool-client/main/src/reqstool/resources/schemas/v1/annotations.schema.json\n"
+    yaml_language_server = "# yaml-language-server: $schema=https://raw.githubusercontent.com/Luftfartsverket/reqstool-client/main/src/reqstool/resources/schemas/v1/annotations.schema.json\n"  # noqa
 
     test_output_file = tmp_path / "test_output.yml"
     sample_formatted_data = """
