@@ -184,7 +184,7 @@ class DecoratorProcessor:
         if not os.path.exists(directory):
             os.makedirs(directory)
 
-    def process_decorated_data(self, path_to_python_files, output_file="build/annotations.yml"):
+    def process_decorated_data(self, path_to_python_files, output_file="build/reqstool/annotations.yml"):
         """
         "Main" function, runs all functions resulting in  a yaml file containing decorated data.
 
