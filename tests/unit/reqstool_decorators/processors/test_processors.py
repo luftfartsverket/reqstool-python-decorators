@@ -57,7 +57,7 @@ def test_write_to_yaml(process_decorator_instance: DecoratorProcessor, tmp_path)
         assert sample_formatted_data == loaded_data
 
 
-@pytest.mark.skip(reason="Test manually and check structure of the annotations.yml file generated in dist folder")
+@pytest.mark.skip(reason="Test manually and check structure of the annotations.yml file generated in build folder")
 def test_process_decorated_data(process_decorator_instance: DecoratorProcessor):
     paths = ["tests"]
     process_decorator_instance.process_decorated_data(path_to_python_files=paths)
