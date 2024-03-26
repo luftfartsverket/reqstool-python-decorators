@@ -1,20 +1,20 @@
 import pytest
-from src.reqstool_python_decorators.processors.decorator_processor import ProcessDecorator
+from src.reqstool_python_decorators.processors.decorator_processor import DecoratorProcessor
 from ruamel.yaml import YAML
 
 
 @pytest.fixture
 def process_decorator_instance():
-    return ProcessDecorator()
+    return DecoratorProcessor()
 
 
-def test_find_python_files(process_decorator_instance: ProcessDecorator, tmpdir):
+def test_find_python_files(process_decorator_instance: DecoratorProcessor, tmpdir):
     tmpdir.join("pythonfile.py").write("content")
     result = process_decorator_instance.find_python_files(tmpdir)
     assert result == [str(tmpdir.join("pythonfile.py"))]
 
 
-def test_get_functions_and_classes(process_decorator_instance: ProcessDecorator, tmpdir):
+def test_get_functions_and_classes(process_decorator_instance: DecoratorProcessor, tmpdir):
     file_path = str(tmpdir.join("test_file.py"))
     tmpdir.join("test_file.py").write('@SVCs("SVC_001")\nclass Test:\n  pass')
     process_decorator_instance.get_functions_and_classes(file_path, ["SVCs"])
@@ -24,20 +24,18 @@ def test_get_functions_and_classes(process_decorator_instance: ProcessDecorator,
     assert process_decorator_instance.req_svc_results[0]["elementKind"] == "CLASS"
 
 
-def test_map_type_known_type(process_decorator_instance: ProcessDecorator):
+def test_map_type_known_type(process_decorator_instance: DecoratorProcessor):
     result = process_decorator_instance.map_type("FUNCTION")
     assert result == "METHOD"
 
 
-def test_map_type_unknown_type(process_decorator_instance: ProcessDecorator):
+def test_map_type_unknown_type(process_decorator_instance: DecoratorProcessor):
     result = process_decorator_instance.map_type("CLASS")
     assert result == "CLASS"
 
 
-def test_write_to_yaml(process_decorator_instance: ProcessDecorator, tmp_path):
-    yaml_language_server = (
-        "# yaml-language-server: $schema=https://schemas.se/requirements-tool/v1/annotations.schema.json"
-    )
+def test_write_to_yaml(process_decorator_instance: DecoratorProcessor, tmp_path):
+    yaml_language_server = "# yaml-language-server: $schema=https://raw.githubusercontent.com/Luftfartsverket/reqstool-client/main/src/reqstool/resources/schemas/v1/annotations.schema.json\n"  # noqa: E501
 
     test_output_file = tmp_path / "test_output.yml"
     sample_formatted_data = """
@@ -59,7 +57,7 @@ def test_write_to_yaml(process_decorator_instance: ProcessDecorator, tmp_path):
         assert sample_formatted_data == loaded_data
 
 
-@pytest.mark.skip(reason="Test manually and check structure of the annotations.yml file generated in dist folder")
-def test_process_decorated_data(process_decorator_instance: ProcessDecorator):
+@pytest.mark.skip(reason="Test manually and check structure of the annotations.yml file generated in build folder")
+def test_process_decorated_data(process_decorator_instance: DecoratorProcessor):
     paths = ["tests"]
     process_decorator_instance.process_decorated_data(path_to_python_files=paths)

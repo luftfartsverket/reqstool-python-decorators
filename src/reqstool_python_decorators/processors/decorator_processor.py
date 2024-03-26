@@ -18,7 +18,7 @@ class DECORATOR_TYPES(Enum):
         return f"from: {self.from_value}, to: {self.to_value}"
 
 
-class ProcessDecorator:
+class DecoratorProcessor:
     """
     A class for collecting and processing Requirements and SVCs annotations on functions and classes in a directory.
 
@@ -30,11 +30,8 @@ class ProcessDecorator:
     """
 
     decorators_to_search = ["Requirements", "SVCs"]
-    reqsvc_yaml_path = "dist/all_annotations.yml"
 
-    yaml_language_server = (
-        "# yaml-language-server: $schema=https://schemas.se/requirements-tool/v1/annotations.schema.json\n"
-    )
+    yaml_language_server = "# yaml-language-server: $schema=https://raw.githubusercontent.com/Luftfartsverket/reqstool-client/main/src/reqstool/resources/schemas/v1/annotations.schema.json\n"  # noqa: E501
 
     def __init__(self, *args, **kwargs):
         """
@@ -176,12 +173,24 @@ class ProcessDecorator:
 
         return formatted_data
 
-    def process_decorated_data(self, path_to_python_files):
+    def create_dir_from_path(self, filepath: str):
+        """
+        Creates directory of provided filepath if it does not exists
+
+        Parameters:
+        - `filepath` (str): Filepath to check and create directory from.
+        """
+        directory = os.path.dirname(filepath)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+    def process_decorated_data(self, path_to_python_files, output_file="build/annotations.yml"):
         """
         "Main" function, runs all functions resulting in  a yaml file containing decorated data.
 
         Parameters:
         - `path_to_python_files` (list): List of directories containing Python files.
+        - `output_file` (str): Set path for output file, defaults to build/annotations.yml
 
         This method takes a list of directories containing Python files, collects decorated data from these files,
         formats the collected data, and writes the formatted results to YAML file for Requirements and SVCs annotations.
@@ -191,6 +200,8 @@ class ProcessDecorator:
             python_files = self.find_python_files(directory=path)
             for file_path in python_files:
                 self.get_functions_and_classes(file_path=file_path, decorator_names=self.decorators_to_search)
+
         formatted_reqsvc_data = self.format_results(results=self.req_svc_results)
-        reqsvc_yaml_path = "dist/annotations.yml"
-        self.write_to_yaml(output_file=reqsvc_yaml_path, formatted_data=formatted_reqsvc_data)
+
+        self.create_dir_from_path(output_file)
+        self.write_to_yaml(output_file=output_file, formatted_data=formatted_reqsvc_data)
