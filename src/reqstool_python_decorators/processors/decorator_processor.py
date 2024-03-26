@@ -173,7 +173,7 @@ class DecoratorProcessor:
 
         return formatted_data
 
-    def create_path_and_file(self, filepath: str):
+    def create_dir_from_path(self, filepath: str):
         """
         Creates directory of provided filepath if it does not exists
 
@@ -203,5 +203,5 @@ class DecoratorProcessor:
 
         formatted_reqsvc_data = self.format_results(results=self.req_svc_results)
 
-        self.create_path_and_file(output_file)
+        self.create_dir_from_path(output_file)
         self.write_to_yaml(output_file=output_file, formatted_data=formatted_reqsvc_data)
