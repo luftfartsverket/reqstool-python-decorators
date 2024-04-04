@@ -21,7 +21,7 @@ The package name is `reqstool-python-decorators`.
 $pip install reqstool-python-decorators 
 ```
 
-## Using
+## Usage
 
 ### pyproject.toml
 
