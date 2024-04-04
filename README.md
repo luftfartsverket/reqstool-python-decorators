@@ -13,15 +13,15 @@ This provides decorators and collecting of decorated code, formatting it and wri
 
 ## Installation
 
-The package name is `reqstool-decorators`.
+The package name is `reqstool-python-decorators`.
 
 * Using pip install:
 
 ```
-$pip install reqstool-decorators 
+$pip install reqstool-python-decorators 
 ```
 
-## Using
+## Usage
 
 ### pyproject.toml
 
@@ -29,7 +29,7 @@ $pip install reqstool-decorators
 
 ```
 dependencies = [
-    "reqstool-decorators == <version>"
+    "reqstool-python-decorators == <version>"
 ]
 ```
 
@@ -37,7 +37,7 @@ dependencies = [
 
 ```
 [tool.poetry.dependencies]
-reqstool-decorators = "<version>"
+reqstool-python-decorators = "<version>"
 ```
 
 ### Decorators
@@ -51,12 +51,12 @@ from reqstool-decorators.decorators.decorators import Requirements, SVCs
 Example usage of the decorators:
 
 ```
-@Requirements(REQ_111, REQ_222)
+@Requirements("REQ_111", "REQ_222")
 def somefunction():
 ```
 
 ```
-@SVCs(SVC_111, SVC_222)
+@SVCs("SVC_111", "SVC_222")
 def test_somefunction():
 ```
 
@@ -65,20 +65,19 @@ def test_somefunction():
 Import processor:
 
 ```
-from reqstool.processors.decorator_processor import ProcessDecorator
+from reqstool.processors.decorator_processor import DecoratorProcessor
 ```
 
 Main function to collect decorators data and generate yaml file:
 
 ```
-process_decorated_data(path_to_python_files)
+process_decorated_data(path_to_python_files, output_file)
 ```
 
-Here `path_to_python_files` is the directories to search through to find decorated code.
+`path_to_python_files` is the directories to search through to find decorated code.
 
-*Note:*
+(Optional) `output_file` is output file(path) the yaml file is stored to. Default is `/build/reqstool/annotations.yml`.
 
-Yaml file is saved into the `/dist` folder, make sure the folder exists before running the `process_decorated_data` function.
 
 ## License
 

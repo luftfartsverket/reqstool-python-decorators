@@ -28,12 +28,12 @@ from reqstool_python_decorators.decorators.decorators import Requirements, SVCs
 Example usage of the decorators:
 
 ```python
-@Requirements(REQ_111, REQ_222)
+@Requirements("REQ_111", "REQ_222")
 def somefunction():
 ```
 
 ```python
-@SVCs(SVC_111, SVC_222)
+@SVCs("SVC_111", "SVC_222")
 def test_somefunction():
 ```
 
@@ -53,5 +53,5 @@ process_decorated_data(path_to_python_files, output_file)
 
 `path_to_python_files` is the directories to search through to find decorated code.
 
-`output_file` is output file(path) the yaml file is stored to
+(Optional) `output_file` is output file(path) the yaml file is stored to. Default is `/build/reqstool/annotations.yml`.
 

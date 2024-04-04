@@ -98,7 +98,7 @@ class DecoratorProcessor:
                 if any(decorator_info["name"] in decorator_names for decorator_info in decorators_info):
                     self.req_svc_results.append(
                         {
-                            "fullyQualifiedName": file_path,
+                            "fullyQualifiedName": str(file_path).replace("/", "."),
                             "elementKind": str(type(node)).split(".")[-1][:-5].upper(),
                             "name": node.name,
                             "decorators": decorators_info,
