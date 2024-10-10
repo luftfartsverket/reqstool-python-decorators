@@ -25,8 +25,10 @@ def test_get_functions_and_classes(process_decorator_instance: DecoratorProcesso
 
 
 def test_map_type_known_type(process_decorator_instance: DecoratorProcessor):
-    result = process_decorator_instance.map_type("FUNCTION")
-    assert result == "METHOD"
+    map_funcion = process_decorator_instance.map_type("FUNCTION")
+    map_asyncfunction = process_decorator_instance.map_type("ASYNCFUNCTION")
+    assert map_funcion == "METHOD"
+    assert map_asyncfunction == "METHOD"
 
 
 def test_map_type_unknown_type(process_decorator_instance: DecoratorProcessor):
