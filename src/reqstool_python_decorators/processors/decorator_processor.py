@@ -9,6 +9,7 @@ import ast
 @unique
 class DECORATOR_TYPES(Enum):
     FUNCTION = ("FUNCTION", "METHOD")
+    ASYNCFUNCTION = ("ASYNCFUNCTION", "METHOD")
 
     def __init__(self, from_value, to_value):
         self.from_value = from_value
@@ -173,7 +174,7 @@ class DecoratorProcessor:
 
         return formatted_data
 
-    def create_dir_from_path(self, filepath: str):
+    def create_dir_from_path(self, filepath: str) -> None:
         """
         Creates directory of provided filepath if it does not exists
 
@@ -184,7 +185,9 @@ class DecoratorProcessor:
         if not os.path.exists(directory):
             os.makedirs(directory)
 
-    def process_decorated_data(self, path_to_python_files, output_file="build/reqstool/annotations.yml"):
+    def process_decorated_data(
+        self, path_to_python_files: str, output_file: str = "build/reqstool/annotations.yml"
+    ) -> None:
         """
         "Main" function, runs all functions resulting in  a yaml file containing decorated data.
 
