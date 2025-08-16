@@ -45,7 +45,7 @@ local_scheme = "no-local-version"
 [tool.hatch.envs.dev]
 dependencies = [
     "pytest==8.4.1",
-    "pytest-sugar==1.0.0",
+    "pytest-sugar==1.1.0",
     "pytest-cov==6.2.1",
     "black==25.1.0",
     "flake8==7.3.0",
