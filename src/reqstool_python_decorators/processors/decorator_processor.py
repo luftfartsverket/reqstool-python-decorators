@@ -93,7 +93,7 @@ class DecoratorProcessor:
                 for decorator_node in getattr(node, "decorator_list", []):
                     if isinstance(decorator_node, ast.Call) and isinstance(decorator_node.func, ast.Name):
                         decorator_name = decorator_node.func.id
-                        args = [arg.s for arg in decorator_node.args if isinstance(arg, ast.Constant)]
+                        args = [arg.value for arg in decorator_node.args if isinstance(arg, ast.Constant)]
                         decorators_info.append({"name": decorator_name, "args": args})
 
                 if any(decorator_info["name"] in decorator_names for decorator_info in decorators_info):
